@@ -31,6 +31,11 @@ body,div,html{
     font-size: 8px;
 
 }
+  .swiper-pagination-bullet-active{
+    width: 20px;
+    background-color: white;
+    border-radius: 5px
+  }
   .separator{
     height: 0.15rem;
     width: 7.5rem;

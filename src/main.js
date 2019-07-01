@@ -1,5 +1,7 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+import 'babel-polyfill'  // （补丁）对es6的一些api做转译 如：promise
+
 import Vue from 'vue'
 import App from './App'
 import router from './router'

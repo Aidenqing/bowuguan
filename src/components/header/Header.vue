@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <div class="back" style="position: absolute">
+    <div class="back" @click="back" style="position: absolute">
       <img src="@/common/image/left.png" style="width: 0.26rem;height: 0.44rem;"
            v-show="backShow"/>
 
@@ -25,6 +25,11 @@ export default {
     return{
       logoImg:'http://www.cni-expo.com/h5/v1/static/image/header_logo.png'
     }
+  },
+  methods:{
+    back() {
+      this.$router.back()
+    },
   },
   computed: {
 

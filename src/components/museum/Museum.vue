@@ -99,13 +99,14 @@ export default {
   },
   activated: function () {
     this.reset()
-  },
-  created () {
     this.setBackShow(true)
     this.setTitleShow(true)
     this.setLogoShow(false)
     this.setShareShow(true)
     this.setMenuShow(true)
+  },
+  created () {
+
     this.museumId = getUrlParam('museumId')
     this._getMuseumDetail(this.museumId)
   },
@@ -121,7 +122,7 @@ export default {
         path: '/museum/detail',
         // name: 'mallList',
         query: {
-          exhibitsId: item.id,
+          exhibitId: item.id,
           museumId: this.museumId
         }
       })
@@ -312,6 +313,7 @@ export default {
       margin 0.3rem .2rem 0 .2rem
       text-align left
       overflow hidden
+      line-height 18px
     .more-data
       margin .3rem .2rem .44rem 0
       text-align right
@@ -323,7 +325,10 @@ export default {
         width .23rem
       .saw
         img
-          width 0.28rem
+          width 0.3rem
+      .zan
+        img
+          width 0.26rem
   .exhibits
     text-align left
     height 100%;

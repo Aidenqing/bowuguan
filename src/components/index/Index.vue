@@ -19,8 +19,8 @@
 
   <div class="swiper-container exhibits">
     <div class="swiper-wrapper">
-      <a class="swiper-slide" v-for="(item,index) in exhibits">
-        <img  :data-src="item.coverImage" class="swiper-lazy" @click="goDetail(item)"/>
+      <a class="swiper-slide" v-for="(item,index) in exhibits" @click.prevent.stop="goDetail(item)">
+        <img  :data-src="item.coverImage" class="swiper-lazy" />
         <div class="swiper-lazy-preloader"></div>
       <div class="info">
         <div class="name">{{item.exhibitsName}}</div>
@@ -68,7 +68,7 @@ import Loading from 'base/loading/loading' // 加载中
 import {getUrlParam} from '@/common/common'
 
 import {getIndex, getMuseumList} from '@/api/museum/museum'
-import {ERR_OK} from '@/common/config'
+import {ERR_OK, PARAMETER} from '@/common/config'
 import {mapMutations} from 'vuex'
 export default {
   data () {
@@ -4911,258 +4911,45 @@ export default {
       belongId: ''
     }
   },
-  created () {
+  activated: function () {
     this.setBackShow(false)
     this.setTitleShow(false)
     this.setLogoShow(true)
     this.setShareShow(true)
     this.setMenuShow(true)
+  },
+  created () {
+    this.belongId = getUrlParam(PARAMETER.belongId)
 
-    this.exhibits = [
-      {
-      'museumId': 2,
-      'coverImage': 'http://www.cni-expo.com/store/uploads/1529678762082.jpg',
-      'museumName': '嘉影工业展示馆',
-      'logo': 2,
-      'id': 1864,
-      'exhibitsName': '嘉影工业展示_潮阳博物馆项目',
-      'exhibitsVideo': ''
-    },
-    {
-      'museumId': 15,
-      'coverImage': 'http://www.cni-expo.com/store/uploads/1529658094821.jpg',
-      'museumName': '高端材料与先进制造馆',
-      'logo': 15,
-      'id': 1274,
-      'exhibitsName': '半导体材料',
-      'exhibitsVideo': ''
-    },
-    {
-      'museumId': 15,
-      'coverImage': 'http://www.cni-expo.com/store/uploads/1529659380836.jpg',
-      'museumName': '高端材料与先进制造馆',
-      'logo': 15,
-      'id': 1271,
-      'exhibitsName': '铝合金',
-      'exhibitsVideo': ''
-    },
-    {
-      'museumId': 15,
-      'coverImage': 'http://www.cni-expo.com/store/uploads/1529680407892.jpg',
-      'museumName': '高端材料与先进制造馆',
-      'logo': 15,
-      'id': 1266,
-      'exhibitsName': '重大智能制造装备',
-      'exhibitsVideo': ''
-    },
-    {
-      'museumId': 15,
-      'coverImage': 'http://www.cni-expo.com/store/uploads/1529659393956.jpg',
-      'museumName': '高端材料与先进制造馆',
-      'logo': 15,
-      'id': 1268,
-      'exhibitsName': '不锈钢',
-      'exhibitsVideo': ''
-    },
-    {
-      'museumId': 15,
-      'coverImage': 'http://www.cni-expo.com/store/uploads/1529659389499.jpg',
-      'museumName': '高端材料与先进制造馆',
-      'logo': 15,
-      'id': 1269,
-      'exhibitsName': '新材料',
-      'exhibitsVideo': ''
-    },
-    {
-      'museumId': 15,
-      'coverImage': 'http://www.cni-expo.com/store/uploads/1529659385434.jpg',
-      'museumName': '高端材料与先进制造馆',
-      'logo': 15,
-      'id': 1270,
-      'exhibitsName': '高强度钢',
-      'exhibitsVideo': ''
-    },
-    {
-      'museumId': 15,
-      'coverImage': 'http://www.cni-expo.com/store/uploads/1529659377194.jpg',
-      'museumName': '高端材料与先进制造馆',
-      'logo': 15,
-      'id': 1272,
-      'exhibitsName': '钛合金',
-      'exhibitsVideo': ''
-    },
-    {
-      'museumId': 15,
-      'coverImage': 'http://www.cni-expo.com/store/uploads/1529659373151.jpg',
-      'museumName': '高端材料与先进制造馆',
-      'logo': 15,
-      'id': 1273,
-      'exhibitsName': '镁合金',
-      'exhibitsVideo': ''
-    },
-    {
-      'museumId': 4,
-      'coverImage': 'http://www.cni-expo.com/store/uploads/1532077358107.jpg',
-      'museumName': '有色金属馆',
-      'logo': 4,
-      'id': 1382,
-      'exhibitsName': '铜及铜合金',
-      'exhibitsVideo': ''
-    }]
-    this.banners=[
-      {
-      'id': 0,
-      'type': 0,
-      'name': null,
-      'rank': 0,
-      'coverImage': 'http://www.cni-expo.com/store/uploads/1544155438951.jpg',
-      'href': 'http://gjy.yongdd.com/portal/Gallery/homePage5.html?id=765',
-      'linkType': 0,
-      'status': 0,
-      'createTime': null,
-      'topTime': null,
-      'dayNum': 0,
-      'museumItem': null,
-      'museumName': null,
-      'topNum': 0,
-      'checkId': 0,
-      'adminId': 0
-    },
-      {
-        'id': 0,
-        'type': 0,
-        'name': null,
-        'rank': 0,
-        'coverImage': 'http://www.cni-expo.com/store/uploads/1544079534399.jpg',
-        'href': 'http://gjy.yongdd.com/portal/Gallery/homePage5.html?id=764',
-        'linkType': 0,
-        'status': 0,
-        'createTime': null,
-        'topTime': null,
-        'dayNum': 0,
-        'museumItem': null,
-        'museumName': null,
-        'topNum': 0,
-        'checkId': 0,
-        'adminId': 0
-      },
-      {
-        'id': 0,
-        'type': 0,
-        'name': null,
-        'rank': 0,
-        'coverImage': 'http://www.cni-expo.com/store/uploads/1540800272410.jpg',
-        'href': 'http://gjy.yongdd.com/portal/Gallery/homePage5.html?id=764',
-        'linkType': 0,
-        'status': 0,
-        'createTime': null,
-        'topTime': null,
-        'dayNum': 0,
-        'museumItem': null,
-        'museumName': null,
-        'topNum': 0,
-        'checkId': 0,
-        'adminId': 0
-      },
-      {
-        'id': 0,
-        'type': 0,
-        'name': null,
-        'rank': 0,
-        'coverImage': 'http://www.cni-expo.com/store/uploads/1540800452904.jpg',
-        'href': '',
-        'linkType': 0,
-        'status': 0,
-        'createTime': null,
-        'topTime': null,
-        'dayNum': 0,
-        'museumItem': null,
-        'museumName': null,
-        'topNum': 0,
-        'checkId': 0,
-        'adminId': 0
-      },
-      {
-        'id': 0,
-        'type': 0,
-        'name': null,
-        'rank': 0,
-        'coverImage': 'http://www.cni-expo.com/store/uploads/1540800452904.jpg',
-        'href': '',
-        'linkType': 0,
-        'status': 0,
-        'createTime': null,
-        'topTime': null,
-        'dayNum': 0,
-        'museumItem': null,
-        'museumName': null,
-        'topNum': 0,
-        'checkId': 0,
-        'adminId': 0
-      },
-      {
-        'id': 0,
-        'type': 0,
-        'name': null,
-        'rank': 0,
-        'coverImage': 'http://www.cni-expo.com/store/uploads/1540800452904.jpg',
-        'href': '',
-        'linkType': 0,
-        'status': 0,
-        'createTime': null,
-        'topTime': null,
-        'dayNum': 0,
-        'museumItem': null,
-        'museumName': null,
-        'topNum': 0,
-        'checkId': 0,
-        'adminId': 0
-      },
-      {
-        'id': 0,
-        'type': 0,
-        'name': null,
-        'rank': 0,
-        'coverImage': 'http://www.cni-expo.com/store/uploads/1540800452904.jpg',
-        'href': '',
-        'linkType': 0,
-        'status': 0,
-        'createTime': null,
-        'topTime': null,
-        'dayNum': 0,
-        'museumItem': null,
-        'museumName': null,
-        'topNum': 0,
-        'checkId': 0,
-        'adminId': 0
-      }]
+    let res = {'result': 1, 'msg': '成功', 'data': {'museumItemList': [{'museumName': '高端材料与先进制造馆', 'id': 15, 'type': 5, 'introduction': '本馆展示工经联以高端材料的先进制造协同创新为着力点，会聚高端材料和先进制造领域的各类主体，各种资源形成协同创新的新模式、新机制和新局面。', 'coverImage': 'http://www.cni-expo.com/store/uploads/1529490286193.jpg'}, {'museumName': '嘉影工业展示馆', 'id': 2, 'type': 1, 'introduction': '广州嘉影软件有限公司创立于2011年，是一家专注于深度展示技术研发、应用的创新型公司。2016年，被政府认定为“高新技术企业”，在数字展示、顶层设计、资源对接方面提供高品质的服务，专业为客户解决工业营销问题。', 'coverImage': 'http://www.cni-expo.com/store/uploads/1544687829529.jpg'}, {'museumName': '金属材料成型馆', 'id': 768, 'type': 5, 'introduction': '材料成形技术一般包括铸造成形、锻压成形、焊接成形和非金属材料成形等工艺技术。材料成形技术是一门研究如何用热或常温成形的方法将材料加工成机器部件和结构，并研究如何保证、评估、提高这些部件和结构的安全可靠度和寿命的技术科学。它属于机械制造学科。材料成形过程与金属切削过程不同，在大部分成形过程中，材料不仅发生几何尺寸的变化，而且会发生成分、组织结构及性能的变化。因此材料成形学科的任务不仅是要研究如何使机', 'coverImage': 'http://www.cni-expo.com/store/uploads/1544608378164.jpg'}], 'museumList': [{'museumName': '国务院国资委发布厅', 'id': 775, 'type': 5, 'introduction': '    国务院国有资产监督管理委员会为国务院直属正部级特设机构，代表国家履行出资人职责。\n    根据国务院授权，依照《中华人民共和国公司法》等法律和行政法规履行出资人职责，指导推进国有企业改革和重组；对所监管企业国有资产的保值增值进行监督，加强国有资产的管理工作；推进国有企业的现代企业制度建设，完善公司治理结构；推动国有经济结构和布局的战略性调整。', 'coverImage': 'http://www.cni-expo.com/store/uploads/1560825976756.jpg'}, {'museumName': '国企贡献典范', 'id': 771, 'type': 5, 'introduction': '国有企业为我国经济社会发展、科技进步、国防建设、民生改善作出了历史性贡献，功勋卓著，功不可没。', 'coverImage': 'http://www.cni-expo.com/store/uploads/1559548002969.jpg'}, {'museumName': '改革创新示范', 'id': 772, 'type': 5, 'introduction': '坚持党的领导，加强党的建设，大力推进国有企业改革，不断激发企业内生动力和发展活力。', 'coverImage': 'http://www.cni-expo.com/store/uploads/1559548038150.jpg'}, {'museumName': '安全教育基地', 'id': 773, 'type': 5, 'introduction': '只有国家安全和社会稳定，改革发展才能不断推进。', 'coverImage': 'http://www.cni-expo.com/store/uploads/1559548068588.jpg'}, {'museumName': '工业旅游标杆', 'id': 774, 'type': 5, 'introduction': '企业组织消费者参观工厂，展示规模化生产基地，规范化管理，取得消费者的认同和信赖，扩大品牌的影响力。', 'coverImage': 'http://www.cni-expo.com/store/uploads/1559548089421.jpg'}, {'museumName': '一带一路国际馆', 'id': 25, 'type': 5, 'introduction': '“一带一路”（The Belt and Road，缩写B&R）是“丝绸之路经济带”和“21世纪海上丝绸之路”的简称，2013年9月和10月由中国国家主席习近平分别提出建设“新丝绸之路经济带”和“21世纪海上丝绸之路”的合作倡议。它将充分依靠中国与有关国家既有的双多边机制，借助既有的、行之有效的区域合作平台，一带一路旨在借用古代丝绸之路的历史符号，高举和平发展的旗帜，积极发展与沿线国家的合作。', 'coverImage': 'http://www.cni-expo.com/store/uploads/1560828571365.jpg'}, {'museumName': '中国古代铸造馆', 'id': 767, 'type': 5, 'introduction': '铸造技术,从考古发现的器物来推断，是人类发明了陶器之后掌握的。但是随着认识的不断提高，人类有发明了许多新的铸造方法。所以说，铸造技术是一门既古老又崭新的技术。说它崭新,是因为出现新的铸造方法、新的铸造合金和新的铸造设备。', 'coverImage': 'http://www.cni-expo.com/store/uploads/1560160904437.jpg'}, {'museumName': '中国工业铸造馆', 'id': 766, 'type': 3, 'introduction': '中国约在公元前1700～前1000年之间已进入青铜铸件的全盛期，工艺上已达到相当高的水平。铸造是将液体金属浇铸到与零件形状相适应的铸造空腔中，待其冷却凝固后，以获得零件或毛坯的方法。', 'coverImage': 'http://www.cni-expo.com/store/uploads/1560160949481.jpg'}], 'exhibits': [{'museumId': 2, 'coverImage': 'http://www.cni-expo.com/store/uploads/1529678762082.jpg', 'museumName': '嘉影工业展示馆', 'logo': 2, 'id': 1864, 'exhibitsName': '嘉影工业展示_潮阳博物馆项目', 'exhibitsVideo': ''}, {'museumId': 15, 'coverImage': 'http://www.cni-expo.com/store/uploads/1529658094821.jpg', 'museumName': '高端材料与先进制造馆', 'logo': 15, 'id': 1274, 'exhibitsName': '半导体材料', 'exhibitsVideo': ''}, {'museumId': 15, 'coverImage': 'http://www.cni-expo.com/store/uploads/1529680407892.jpg', 'museumName': '高端材料与先进制造馆', 'logo': 15, 'id': 1266, 'exhibitsName': '重大智能制造装备', 'exhibitsVideo': ''}, {'museumId': 15, 'coverImage': 'http://www.cni-expo.com/store/uploads/1529659380836.jpg', 'museumName': '高端材料与先进制造馆', 'logo': 15, 'id': 1271, 'exhibitsName': '铝合金', 'exhibitsVideo': ''}, {'museumId': 15, 'coverImage': 'http://www.cni-expo.com/store/uploads/1529659393956.jpg', 'museumName': '高端材料与先进制造馆', 'logo': 15, 'id': 1268, 'exhibitsName': '不锈钢', 'exhibitsVideo': ''}, {'museumId': 15, 'coverImage': 'http://www.cni-expo.com/store/uploads/1529659389499.jpg', 'museumName': '高端材料与先进制造馆', 'logo': 15, 'id': 1269, 'exhibitsName': '新材料', 'exhibitsVideo': ''}, {'museumId': 15, 'coverImage': 'http://www.cni-expo.com/store/uploads/1529659385434.jpg', 'museumName': '高端材料与先进制造馆', 'logo': 15, 'id': 1270, 'exhibitsName': '高强度钢', 'exhibitsVideo': ''}, {'museumId': 15, 'coverImage': 'http://www.cni-expo.com/store/uploads/1529659377194.jpg', 'museumName': '高端材料与先进制造馆', 'logo': 15, 'id': 1272, 'exhibitsName': '钛合金', 'exhibitsVideo': ''}, {'museumId': 15, 'coverImage': 'http://www.cni-expo.com/store/uploads/1529659373151.jpg', 'museumName': '高端材料与先进制造馆', 'logo': 15, 'id': 1273, 'exhibitsName': '镁合金', 'exhibitsVideo': ''}, {'museumId': 4, 'coverImage': 'http://www.cni-expo.com/store/uploads/1532077358107.jpg', 'museumName': '有色金属馆', 'logo': 4, 'id': 1382, 'exhibitsName': '铜及铜合金', 'exhibitsVideo': ''}], 'banners': [{'id': 0, 'type': 0, 'name': null, 'rank': 0, 'coverImage': 'http://www.cni-expo.com/store/uploads/1544155438951.jpg', 'href': 'http://gjy.yongdd.com/portal/Gallery/homePage5.html?id=765', 'linkType': 0, 'status': 0, 'createTime': null, 'topTime': null, 'dayNum': 0, 'museumItem': null, 'museumName': null, 'topNum': 0, 'checkId': 0, 'adminId': 0}, {'id': 0, 'type': 0, 'name': null, 'rank': 0, 'coverImage': 'http://www.cni-expo.com/store/uploads/1544079534399.jpg', 'href': 'http://gjy.yongdd.com/portal/Gallery/homePage5.html?id=764', 'linkType': 0, 'status': 0, 'createTime': null, 'topTime': null, 'dayNum': 0, 'museumItem': null, 'museumName': null, 'topNum': 0, 'checkId': 0, 'adminId': 0}, {'id': 0, 'type': 0, 'name': null, 'rank': 0, 'coverImage': 'http://www.cni-expo.com/store/uploads/1540800272410.jpg', 'href': 'http://gjy.yongdd.com/portal/Gallery/homePage5.html?id=764', 'linkType': 0, 'status': 0, 'createTime': null, 'topTime': null, 'dayNum': 0, 'museumItem': null, 'museumName': null, 'topNum': 0, 'checkId': 0, 'adminId': 0}, {'id': 0, 'type': 0, 'name': null, 'rank': 0, 'coverImage': 'http://www.cni-expo.com/store/uploads/1540800452904.jpg', 'href': '', 'linkType': 0, 'status': 0, 'createTime': null, 'topTime': null, 'dayNum': 0, 'museumItem': null, 'museumName': null, 'topNum': 0, 'checkId': 0, 'adminId': 0}]}}
+    this._handleOriginData(res)
     this.$nextTick(() => {
       this.initBanner()
       this.initExhibitsBanner()
     })
-    this.belongId = getUrlParam('belongId')
     getIndex(this.belongId).then((res) => {
       if (res.result === ERR_OK) {
-        this.banners = res.data.banners
-        this.exhibits=res.data.exhibits
+        this._handleOriginData(res)
         this.$nextTick(() => {
           this.initBanner()
           this.initExhibitsBanner()
         })
       }
-
     })
     this._getMuseumList()
-
   },
   methods: {
+    _handleOriginData (res) {
+      this.banners = res.data.banners
+      let data = res.data.exhibits
+      /*  data.forEach(item => {
+        item.href = '/museum/detail?'+PARAMETER.museumId + '=' + item.museumId + '&' + PARAMETER.exhibitId + '=' + item.id
+      }) */
+      this.exhibits = data
+    },
     selectItem (item) {
       this.$router.push({
-        path: '/museum',
-        // name: 'mallList',
-        query: {
-          museumId: item.id
-        }
+        path: '/museum?' + PARAMETER.museumId + '=' + item.id
       })
     },
     _getMuseumList () {
@@ -5183,13 +4970,11 @@ export default {
       this._getMuseumList()
     },
     goDetail (item) {
+      console.log(item)
       this.$router.push({
-        path: '/museum/detail',
+        path: '/museum/detail?' + PARAMETER.museumId + '=' + item.museumId + '&' + PARAMETER.exhibitId + '=' + item.id
         // name: 'mallList',
-        query: {
-          museumId: item.museumId,
-          exhibitId: item.id
-        }
+
       })
     },
     initBanner () {
@@ -5215,7 +5000,8 @@ export default {
 
         watchSlidesProgress: true,
 
-        paginationClickable: true,
+         paginationClickable: true,
+       // preventClicksPropagation: false,
 
         slidesPerView: 1.2,
 
@@ -5237,7 +5023,7 @@ export default {
       setTitleShow: 'SET_TITLE_SHOW',
       setLogoShow: 'SET_LOGO_SHOW',
       setMenuShow: 'SET_MENU_SHOW',
-      setShareShow: 'SET_SHARE_SHOW',
+      setShareShow: 'SET_SHARE_SHOW'
 
     })
 
