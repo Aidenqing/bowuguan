@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import {ERR_OK} from '@/common/config'
+import {ERR_OK,PARAMETER} from '@/common/config'
 import {getUrlParam} from '@/common/common'
 import {getMuseumDetail} from '@/api/museum/museum'
 import Swiper from 'swiper'
@@ -65,8 +65,8 @@ export default {
   },
   methods: {
     _getParam(){
-      let museumId = getUrlParam('museumId')
-     let exhibitsId = getUrlParam('exhibitsId')
+      let museumId = getUrlParam(PARAMETER.museumId)
+     let exhibitsId = getUrlParam(PARAMETER.exhibitId)
       if(museumId==this.museumId){
         this.exhibitsId=exhibitsId
         this._getCurrentIndex()

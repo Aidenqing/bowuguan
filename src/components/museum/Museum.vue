@@ -70,7 +70,7 @@
 <script>
 import {mapMutations} from 'vuex'
 import {getMuseumDetail} from '@/api/museum/museum'
-import {ERR_OK} from '@/common/config'
+import {ERR_OK,PARAMETER} from '@/common/config'
 import BScroll from 'better-scroll'
 import Scroll from 'base/scroll/scroll'
 import {getUrlParam} from '@/common/common'
@@ -107,7 +107,7 @@ export default {
   },
   created () {
 
-    this.museumId = getUrlParam('museumId')
+    this.museumId = getUrlParam(PARAMETER.museumId)
     this._getMuseumDetail(this.museumId)
   },
   methods: {
