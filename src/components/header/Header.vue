@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="back" style="position: absolute">
-      <img src="@/common/image/quit.png" style="width: 0.26rem;height: 0.44rem;transform: rotate(180deg)"
+      <img src="@/common/image/left.png" style="width: 0.26rem;height: 0.44rem;"
            v-show="backShow"/>
 
     </div>

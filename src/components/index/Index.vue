@@ -4917,6 +4917,7 @@ export default {
     this.setLogoShow(true)
     this.setShareShow(true)
     this.setMenuShow(true)
+
     this.exhibits = [
       {
       'museumId': 2,
@@ -5135,30 +5136,32 @@ export default {
         'checkId': 0,
         'adminId': 0
       }]
+    this.$nextTick(() => {
+      this.initBanner()
+      this.initExhibitsBanner()
+    })
     this.belongId = getUrlParam('belongId')
     getIndex(this.belongId).then((res) => {
       if (res.result === ERR_OK) {
         this.banners = res.data.banners
         this.exhibits=res.data.exhibits
+        this.$nextTick(() => {
+          this.initBanner()
+          this.initExhibitsBanner()
+        })
       }
-      this.$nextTick(() => {
-        // this._initLunbo()
-      })
+
     })
     this._getMuseumList()
-    this.$nextTick(() => {
-      this.initBanner()
-      this.initExhibitsBanner()
-    })
+
   },
   methods: {
     selectItem (item) {
-      this.setTitle(item.museumName)
       this.$router.push({
         path: '/museum',
         // name: 'mallList',
         query: {
-          id: item.id
+          museumId: item.id
         }
       })
     },
@@ -5235,7 +5238,6 @@ export default {
       setLogoShow: 'SET_LOGO_SHOW',
       setMenuShow: 'SET_MENU_SHOW',
       setShareShow: 'SET_SHARE_SHOW',
-      setTitle: 'SET_TITLE'
 
     })
 
