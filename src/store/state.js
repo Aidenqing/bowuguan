@@ -6,7 +6,9 @@ const state = {
   shareShow: false,
   menuShow: false,
   title: '',
-  useExhibits: []
+  useExhibits: [],
+  userInfo: {'username': '18620699717',
+    'avatarUrl': null}
 
 }
 export default state

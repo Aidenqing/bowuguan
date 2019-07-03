@@ -13,3 +13,6 @@ export  const SET_TITLE="SET_TITLE"
 
 //展示的展品列表
 export  const SET_USE_EXIHIBITS="SET_USE_EXIHIBITS"
+
+//用戶信息
+export const SET_USERINFO='SET_USERINFO'

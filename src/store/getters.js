@@ -10,3 +10,5 @@ export const menuShow = state => state.menuShow
 export const title = state => state.title
 
 export const usedExhibits = state => state.useExhibits
+
+export const userInfo = state => state.userInfo

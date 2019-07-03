@@ -21,8 +21,10 @@ const mutations = {
   },
   [types.SET_USE_EXIHIBITS] (state, list) {
     state.useExhibits = list
+  },
+
+  [types.SET_USERINFO] (state, data) {
+    state.userInfo = data
   }
-
-
 }
 export default mutations

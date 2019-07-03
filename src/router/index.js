@@ -9,7 +9,7 @@ const Index = (resolve) => {
   })
 }
 
- const MuseumDetail = (resolve) => {
+const MuseumDetail = (resolve) => {
   import('components/museum-detail/Detail').then((module) => {
     resolve(module)
   })
@@ -19,7 +19,26 @@ const Museum = (resolve) => {
     resolve(module)
   })
 }
-
+const User = (resolve) => {
+  import('components/user/User').then((module) => {
+    resolve(module)
+  })
+}
+const Collection = (resolve) => {
+  import('components/collect/Collection').then((module) => {
+    resolve(module)
+  })
+}
+const Track = (resolve) => {
+  import('components/track/Track').then((module) => {
+    resolve(module)
+  })
+}
+const Login = (resolve) => {
+  import('components/login/Login').then((module) => {
+    resolve(module)
+  })
+}
 export default new Router({
   routes: [
     {
@@ -35,6 +54,23 @@ export default new Router({
       path: '/museum/detail',
       component: MuseumDetail
 
+    },
+    {
+      path: '/login',
+      component: Login
+    },
+    {
+      path: '/user',
+      component: User
+
+    },
+    {
+      path: '/track',
+      component: Track
+    },
+    {
+      path: '/collection',
+      component: Collection
     },
     {
       path: '/museum',

@@ -64,7 +64,7 @@ export default {
         eventPassthrough: this.eventPassthrough
       })
 
-      console.log(this.scroll)
+      //console.log(this.scroll)
       if (this.listenScroll) { // 假如监听滚动事件（listview.vue组件用到）
         let me = this
         this.scroll.on('scroll', (pos) => {
